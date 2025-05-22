@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tebak Angka</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #0b0c10;
+            font-family: 'Press Start 2P', cursive, monospace;
+            color: #66ff66;
+            user-select: none;
+            flex-direction: column;
+            text-align: center;
+        }
+        h1 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            text-shadow:
+                2px 2px 0 #000,
+                -2px 2px 0 #000,
+                2px -2px 0 #000,
+                -2px -2px 0 #000;
+        }
+        p {
+            font-size: 9px;
+            margin: 0 0 20px 0;
+            text-shadow:
+                1px 1px 0 #000,
+                -1px 1px 0 #000,
+                1px -1px 0 #000,
+                -1px -1px 0 #000;
+        }
+        form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+        input[type="number"] {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 12px;
+            width: 80px;
+            padding: 10px;
+            border: 3px solid #ffb347;
+            background-color: #1f2833;
+            color: #66ff66;
+            box-shadow:
+                inset 0 0 8px #66ff66,
+                3px 3px 0 #000;
+            outline: none;
+            border-radius: 0;
+            text-align: center;
+            /* Prevent arrow spinners on number input for cleaner look */
+            -moz-appearance: textfield;
+        }
+        input[type="number"]:hover, input[type="number"]:focus {
+            background-color: #2a3a44;
+            box-shadow:
+                inset 0 0 12px #ffb347,
+                3px 3px 0 #000;
+            color: #ffb347;
+        }
+        /* Remove number input arrows on Chrome */
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none;
+            margin: 0; 
+        }
+        button {
+            font-family: 'Press Start 2P', cursive, monospace;
+            font-size: 10px;
+            padding: 15px 30px;
+            background-color: #ff4500;
+            color: #0b0c10;
+            border: 3px solid #ffb347;
+            box-shadow:
+                inset 0 0 10px #ffb347,
+                4px 4px 0 #000;
+            border-radius: 0;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+            transition: background-color 0.2s, color 0.2s;
+            box-sizing: border-box;
+        }
+        button:hover {
+            background-color: #ffb347;
+            color: #0b0c10;
+            box-shadow:
+                inset 0 0 15px #ff4500,
+                6px 6px 0 #000;
+        }
+        * {
+            image-rendering: pixelated;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tebak Angka</h1>
+    <p>Silakan masukkan angka tebakan Anda (1-100):</p>
+    <form method="POST" action="{{ url_for('tebak') }}">
+        <input type="number" name="tebakan" min="1" max="100" required>
+        <button type="submit">Tebak</button>
+    </form>
+</body>
+</html>
