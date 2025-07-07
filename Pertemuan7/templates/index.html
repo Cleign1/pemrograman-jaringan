@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Tebak Angka</title>
+    <title>Random Number Generator</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
     <style>
         body {
@@ -40,6 +40,30 @@
             justify-content: center;
             align-items: center;
             gap: 15px;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+        .form-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        .form-group label {
+            font-size: 8px;
+            color: #ffb347;
+            text-shadow:
+                1px 1px 0 #000,
+                -1px 1px 0 #000,
+                1px -1px 0 #000,
+                -1px -1px 0 #000;
         }
         input[type="number"] {
             font-family: 'Press Start 2P', monospace;
@@ -56,6 +80,7 @@
             border-radius: 0;
             text-align: center;
             /* Prevent arrow spinners on number input for cleaner look */
+            appearance: textfield;
             -moz-appearance: textfield;
         }
         input[type="number"]:hover, input[type="number"]:focus {
@@ -102,11 +127,43 @@
     </style>
 </head>
 <body>
-    <h1>Tebak Angka</h1>
-    <p>Silakan masukkan angka tebakan Anda (1-100):</p>
-    <form method="POST" action="{{ url_for('tebak') }}">
-        <input type="number" name="tebakan" min="1" max="100" required>
-        <button type="submit">Tebak</button>
+    <h1>Random Number Generator</h1>
+    <p>Generate random numbers with custom range:</p>
+    
+    <!-- Single Number Generator -->
+    <form method="POST" action="{{ url_for('generate') }}">
+        <div class="form-row">
+            <div class="form-group">
+                <label for="min_val">Min:</label>
+                <input type="number" name="min_val" value="1" required>
+            </div>
+            <div class="form-group">
+                <label for="max_val">Max:</label>
+                <input type="number" name="max_val" value="100" required>
+            </div>
+        </div>
+        <button type="submit">Generate Number</button>
+    </form>
+
+    <p style="margin-top: 30px;">Or generate multiple numbers:</p>
+    
+    <!-- Multiple Numbers Generator -->
+    <form method="POST" action="{{ url_for('generate_multiple') }}">
+        <div class="form-row">
+            <div class="form-group">
+                <label for="min_val">Min:</label>
+                <input type="number" name="min_val" value="1" required>
+            </div>
+            <div class="form-group">
+                <label for="max_val">Max:</label>
+                <input type="number" name="max_val" value="100" required>
+            </div>
+            <div class="form-group">
+                <label for="count">Count:</label>
+                <input type="number" name="count" value="5" min="1" max="50" required>
+            </div>
+        </div>
+        <button type="submit">Generate Multiple</button>
     </form>
 </body>
 </html>

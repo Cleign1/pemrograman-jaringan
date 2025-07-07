@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Hasil Tebakan</title>
+    <title>Generated Numbers</title>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
     <style>
         body {
@@ -20,12 +20,40 @@
         }
         p {
             font-size: 14px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             text-shadow:
                 2px 2px 0 #000,
                 -2px 2px 0 #000,
                 2px -2px 0 #000,
                 -2px -2px 0 #000;
+        }
+        .result-number {
+            font-size: 24px;
+            color: #ffb347;
+            margin: 20px 0;
+            text-shadow:
+                3px 3px 0 #000,
+                -3px 3px 0 #000,
+                3px -3px 0 #000,
+                -3px -3px 0 #000;
+        }
+        .numbers-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin: 20px 0;
+            max-width: 600px;
+        }
+        .number-item {
+            background-color: #1f2833;
+            border: 2px solid #ffb347;
+            padding: 10px 15px;
+            color: #66ff66;
+            font-size: 12px;
+            box-shadow:
+                inset 0 0 8px #66ff66,
+                2px 2px 0 #000;
         }
         a {
             display: inline-block;
@@ -73,16 +101,22 @@
     </style>
 </head>
 <body>
-    <p>{{ pesan }}</p>
-    {% if attempts %}
-    <p>Jumlah percobaan: {{ attempts }}</p>
+    {% if random_number %}
+        <p>Your generated random number:</p>
+        <div class="result-number">{{ random_number }}</div>
+        <p>Range: {{ min_val }} - {{ max_val }}</p>
+    {% elif random_numbers %}
+        <p>Your generated random numbers:</p>
+        <p>Range: {{ min_val }} - {{ max_val }} ({{ count }} numbers)</p>
+        <div class="numbers-grid">
+            {% for number in random_numbers %}
+                <div class="number-item">{{ number }}</div>
+            {% endfor %}
+        </div>
     {% endif %}
+    
     <a href="/">
-        <button type="button">Coba lagi</button>
-    </a>
-    <br><br>
-    <a href="/reset">
-        <button type="button">Mulai ulang</button>
+        <button type="button">Generate Again</button>
     </a>
 </body>
 </html>

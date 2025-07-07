@@ -12,6 +12,7 @@ while True:
     message = client.recv(1024).decode('utf-8')
     print(f"Received message: {message} from: {address}")
     
-    reply = input("Reply: ")
+    # reply = input("Reply: ")
+    reply = "OK"
     client.send(reply.encode('utf-8'))
     print("Reply sent.")
